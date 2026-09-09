@@ -3,3 +3,5 @@ list.addEventListener('change',e=>{if(e.target.type==='checkbox')e.target.parent
 document.querySelector('#complete').onclick=e=>{e.target.textContent='Completed ✓';e.target.disabled=true};
 document.querySelector('#theme').onclick=()=>document.body.classList.toggle('dark');
 document.querySelector('#add').onclick=()=>{const text=prompt('New study task');if(!text)return;const li=document.createElement('li');li.innerHTML='<input type="checkbox"> <span></span><small>Flexible</small>';li.querySelector('span').textContent=text;list.append(li)};
+const sectionMap={"#overview":document.querySelector('#overview'),"#plan":document.querySelector('#plan'),"#revision":document.querySelector('#revision'),"#resources":document.querySelector('#resources'),"#progress":document.querySelector('.metrics')};
+document.querySelectorAll('aside a').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();const target=sectionMap[link.getAttribute('href')];if(!target)return;document.querySelectorAll('aside a').forEach(item=>item.classList.remove('active'));link.classList.add('active');target.scrollIntoView({behavior:'smooth',block:'start'})}));
